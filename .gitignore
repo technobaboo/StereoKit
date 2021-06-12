@@ -27,6 +27,9 @@ zig-cache/
 [Oo]bj/
 [Ll]og/
 
+src/
+*.tar.gz
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 #Moses VSCode
