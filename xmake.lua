@@ -29,7 +29,7 @@ package("openxr_loader")
     end
     
     on_install("linux", "windows", "android", function (package)
-        import("package.tools.cmake").install(package, {"-DDYNAMIC_LOADER=OFF"})
+        import("package.tools.cmake").install(package, {"-DDYNAMIC_LOADER=OFF -DBUILD_WITH_SYSTEM_JSONCPP=OFF -DBUILD_WITH_STD_FILESYSTEM=OFF"})
     end)
 package_end()
 
@@ -90,7 +90,7 @@ target("StereoKitC")
 
     -- Pick our flavor of OpenGL
     if is_plat("linux") then
-        add_links("GL", "GLEW", "GLX", "fontconfig", "X11", "pthread")
+        add_links("GL", "GLEW", "GLX", "fontconfig", "X11", "pthread", "jsoncpp")
     elseif is_plat("android") then
         add_links("EGL", "OpenSLES", "android")
     end

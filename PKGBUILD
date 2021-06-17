@@ -16,8 +16,8 @@ md5sums=('d39b9ad590ead104221f02122da754eb')
 
 build() {
 	cd "$srcdir/StereoKit-$pkgver"
-	xmake f -k shared
-	xmake build
+	xmake f -k shared -y
+	xmake build -y
 }
 
 install() {
