@@ -460,7 +460,7 @@ bool openxr_display_swapchain_update(device_display_t *display) {
 
 	// A "quilt" is a grid of images on a single texture. This terminology is
 	// used for lenticular displays like Looking Glass, and we're using it here
-	// to describe more generically what's happening in a "double wide" 
+	// to describe more generically what's happening in a "double wide"
 	// rendering scenario. This gives us some extra ability to experiment with
 	// memory/image layout like "double tall", and possibly more features later.
 	int32_t array_count  = display->view_cap;
@@ -468,8 +468,8 @@ bool openxr_display_swapchain_update(device_display_t *display) {
 	int32_t quilt_height = 1;
 #if defined(SKG_OPENGL)
 	array_count  = 1;
-	quilt_width  = 1;
-	quilt_height = display->view_cap;
+	quilt_width  = display->view_cap;
+	quilt_height = 1;
 #endif
 	w = w * quilt_width;
 	h = h * quilt_height;
@@ -653,7 +653,7 @@ bool openxr_preferred_blend(XrViewConfigurationType view_type, display_blend_ pr
 	blend_modes = sk_malloc_t(XrEnvironmentBlendMode, blend_count);
 	xr_check(xrEnumerateEnvironmentBlendModes(xr_instance, xr_system_id, view_type, blend_count, &blend_count, blend_modes),
 		"xrEnumerateEnvironmentBlendModes");
-	
+
 	*out_blend = XR_ENVIRONMENT_BLEND_MODE_MAX_ENUM;
 	*out_valid = display_blend_none;
 	for (uint32_t i = 0; i < blend_count; i++) {
@@ -797,7 +797,7 @@ bool openxr_render_frame() {
 
 	// Execute any code that's dependent on the predicted time, such as
 	// updating the location of controller models.
-	// 
+	//
 	// Input can be costly to look at on some systems, so this happens _after_
 	// swapchains are acquired, so they're in close time proximity to
 	// xrWaitFrame. Theoretically better?
